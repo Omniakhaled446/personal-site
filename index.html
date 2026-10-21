@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal - Start Bootstrap Theme</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #f8f9fa;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Gradient Texts */
+        .text-gradient {
+            background: linear-gradient(45deg, #1e3c72, #2a5298, #9b51e0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .text-gradient-purple {
+            background: linear-gradient(45deg, #7928ca, #ff0080);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Buttons Styles */
+        .btn-gradient-primary {
+            background: linear-gradient(45deg, #4e54c8, #8f94fb);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-weight: 600;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-gradient-primary:hover {
+            opacity: 0.9;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .btn-outline-custom {
+            border: 2px solid #333;
+            color: #333;
+            padding: 12px 30px;
+            font-weight: 600;
+            border-radius: 8px;
+            background: transparent;
+            transition: all 0.3s ease;
+        }
+
+        .btn-outline-custom:hover {
+            background: #333;
+            color: white;
+        }
+
+        /* Hero Image Container */
+        .profile-img-container {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 3rem;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            min-height: 400px;
+        }
+
+        .profile-img-container img {
+            max-width: 90%;
+            height: auto;
+        }
+
+        /* Cards Shadow and Radius */
+        .custom-card {
+            border: none;
+            border-radius: 1rem;
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.05);
+            background: #ffffff;
+        }
+
+        /* Section Backgrounds */
+        .cta-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        /* Social Icons Links */
+        .social-link {
+            color: #7928ca;
+            font-size: 1.5rem;
+            margin: 0 10px;
+            transition: transform 0.2s;
+            display: inline-block;
+        }
+
+        .social-link:hover {
+            transform: scale(1.2);
+            color: #ff0080;
+        }
+
+        .badge-custom {
+            background-color: #f1f3f5;
+            color: #333;
+            font-size: 1rem;
+            font-weight: 600;
+            padding: 15px 25px;
+            border-radius: 12px;
+            display: inline-block;
+            width: 100%;
+            text-align: center;
+        }
+
+        .icon-box {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            background: linear-gradient(45deg, #7928ca, #ff0080);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        /* Controlling Page Visibility */
+        .page-section {
+            display: none; /* إخفاء جميع الصفحات افتراضياً */
+        }
+
+        .page-section.active {
+            display: block; /* إظهار الصفحة النشطة فقط */
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Active Link Styling */
+        .navbar-nav .nav-link.active-link {
+            color: #4e54c8 !important;
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar Header -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white py-3 sticky-top shadow-sm">
+        <div class="container px-5">
+            <a class="navbar-brand fw-bold text-primary fs-4" href="#" onclick="showPage('home')">Start Bootstrap</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 fw-semibold">
+                    <li class="nav-item"><a class="nav-link px-3 active-link" id="nav-home" href="#" onclick="showPage('home')">Home</a></li>
+                    <li class="nav-item"><a class="nav-link text-muted px-3" id="nav-resume" href="#" onclick="showPage('resume')">Resume</a></li>
+                    <li class="nav-item"><a class="nav-link text-muted px-3" id="nav-projects" href="#" onclick="showPage('projects')">Projects</a></li>
+                    <li class="nav-item"><a class="nav-link text-muted px-3" id="nav-contact" href="#" onclick="showPage('contact')">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- MAIN CONTENT CONTAINER -->
+    <main class="flex-grow-1">
+
+        <!-- PAGE 1: HOME -->
+        <div id="page-home" class="page-section active">
+            <!-- Hero Section -->
+            <section class="py-5">
+                <div class="container px-5 my-5">
+                    <div class="row gx-5 align-items-center">
+                        <div class="col-lg-6">
+                            <div class="text-center text-lg-start">
+                                <div class="badge bg-gradient text-white mb-4 p-2 px-3 rounded-pill text-uppercase fw-bold" style="background: linear-gradient(45deg, #e6007e, #673ab7);">
+                                    DESIGN · DEVELOPMENT · MARKETING
+                                </div>
+                                <h1 class="display-3 fw-bolder mb-3"><span class="text-secondary d-block fs-3 fw-normal">I can help your business to</span> <span class="text-gradient">Get online and grow fast</span></h1>
+                                <div class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-lg-start mb-3">
+                                    <button class="btn btn-gradient-primary btn-lg px-4 me-sm-3" onclick="showPage('resume')">Resume</button>
+                                    <button class="btn btn-outline-custom btn-lg px-4" onclick="showPage('projects')">Projects</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="d-flex justify-content-center mt-5 mt-lg-0">
+                                <div class="profile-img-container shadow-lg">
+                                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80" alt="Profile Image">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- About Section -->
+            <section class="bg-light py-5">
+                <div class="container px-5 my-5">
+                    <div class="row gx-5 justify-content-center">
+                        <div class="col-lg-10 col-xl-8 text-center">
+                            <h2 class="display-5 fw-bolder text-gradient-purple mb-2">About Me</h2>
+                            <p class="lead fw-normal text-muted mb-4">My name is Start Bootstrap and I help brands grow.</p>
+                            <p class="text-muted mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit dolorum itaque qui unde quisquam consequatur autem. Eveniet quasi nobis aliquid cumque officiis sed rem iure ipsa! Praesentium ratione atque dolorem?</p>
+                            <div class="d-flex justify-content-center fs-2 gap-4">
+                                <a class="social-link" href="#"><i class="bi bi-twitter"></i></a>
+                                <a class="social-link" href="#"><i class="bi bi-linkedin"></i></a>
+                                <a class="social-link" href="#"><i class="bi bi-github"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- PAGE 2: RESUME -->
+        <div id="page-resume" class="page-section">
+            <section class="py-5">
+                <div class="container px-5 my-5">
+                    <div class="text-center mb-5">
+                        <h1 class="display-4 fw-bolder text-gradient-purple mb-4">Resume</h1>
+                        <a class="btn btn-gradient-primary btn-lg" href="#"><i class="bi bi-download me-2"></i>Download Resume</a>
+                    </div>
+
+                    <!-- Experience Section -->
+                    <div class="row gx-5 justify-content-center">
+                        <div class="col-lg-11 col-xl-9 col-xxl-8">
+                            <div class="d-flex align-items-center justify-content-between mb-4">
+                                <h2 class="text-primary fw-bolder mb-0">Experience</h2>
+                            </div>
+
+                            <!-- Experience Card 1 -->
+                            <div class="card custom-card p-4 mb-4">
+                                <div class="row align-items-center">
+                                    <div class="col-md-4 text-center text-md-start mb-3 mb-md-0">
+                                        <div class="bg-light p-3 rounded-4">
+                                            <div class="text-primary fw-bold mb-1">2019 - Present</div>
+                                            <div class="small fw-bold text-dark">Web Developer</div>
+                                            <div class="small text-muted">Stark Industries</div>
+                                            <div class="small text-muted">Los Angeles, CA</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <p class="text-muted mb-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus laudantium, voluptatem quis repellendus eaque sit animi illo ipsam amet officiis corporis sed aliquam non voluptate corrupti excepturi maxime porro fuga.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Experience Card 2 -->
+                            <div class="card custom-card p-4 mb-4">
+                                <div class="row align-items-center">
+                                    <div class="col-md-4 text-center text-md-start mb-3 mb-md-0">
+                                        <div class="bg-light p-3 rounded-4">
+                                            <div class="text-primary fw-bold mb-1">2017 - 2019</div>
+                                            <div class="small fw-bold text-dark">SEM Specialist</div>
+                                            <div class="small text-muted">Wayne Enterprises</div>
+                                            <div class="small text-muted">Gotham City, NY</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <p class="text-muted mb-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus laudantium, voluptatem quis repellendus eaque sit animi illo ipsam amet officiis corporis sed aliquam non voluptate corrupti excepturi maxime porro fuga.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Education Section -->
+                            <div class="d-flex align-items-center justify-content-between mb-4 mt-5">
+                                <h2 class="text-gradient-purple fw-bolder mb-0">Education</h2>
+                            </div>
+
+                            <!-- Education Card 1 -->
+                            <div class="card custom-card p-4 mb-4">
+                                <div class="row align-items-center">
+                                    <div class="col-md-4 text-center text-md-start mb-3 mb-md-0">
+                                        <div class="bg-light p-3 rounded-4">
+                                            <div class="text-gradient-purple fw-bold mb-1">2015 - 2017</div>
+                                            <div class="small fw-bold text-dark">Barnett College</div>
+                                            <div class="small text-muted">Fairfield, NY</div>
+                                            <div class="small text-muted fst-italic">Master's Web Development</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <p class="text-muted mb-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus laudantium, voluptatem quis repellendus eaque sit animi illo ipsam amet officiis corporis sed aliquam non voluptate corrupti excepturi maxime porro fuga.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Education Card 2 -->
+                            <div class="card custom-card p-4 mb-4">
+                                <div class="row align-items-center">
+                                    <div class="col-md-4 text-center text-md-start mb-3 mb-md-0">
+                                        <div class="bg-light p-3 rounded-4">
+                                            <div class="text-gradient-purple fw-bold mb-1">2011 - 2015</div>
+                                            <div class="small fw-bold text-dark">ULA</div>
+                                            <div class="small text-muted">Los Angeles, CA</div>
+                                            <div class="small text-muted fst-italic">Undergraduate Computer Science</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <p class="text-muted mb-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus laudantium, voluptatem quis repellendus eaque sit animi illo ipsam amet officiis corporis sed aliquam non voluptate corrupti excepturi maxime porro fuga.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Skills & Languages Card -->
+                            <div class="card custom-card p-5 mt-5">
+                                <div class="mb-5">
+                                    <div class="d-flex align-items-center mb-4">
+                                        <div class="icon-box me-3"><i class="bi bi-tools"></i></div>
+                                        <h3 class="fw-bolder text-gradient-purple mb-0">Professional Skills</h3>
+                                    </div>
+                                    <div class="row g-3">
+                                        <div class="col-md-4"><div class="badge-custom">SEO/SEM Marketing</div></div>
+                                        <div class="col-md-4"><div class="badge-custom">Statistical Analysis</div></div>
+                                        <div class="col-md-4"><div class="badge-custom">Web Development</div></div>
+                                        <div class="col-md-4"><div class="badge-custom">Network Security</div></div>
+                                        <div class="col-md-4"><div class="badge-custom">Adobe Software Suite</div></div>
+                                        <div class="col-md-4"><div class="badge-custom">User Interface Design</div></div>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <div class="d-flex align-items-center mb-4">
+                                        <div class="icon-box me-3"><i class="bi bi-code-slash"></i></div>
+                                        <h3 class="fw-bolder text-gradient-purple mb-0">Languages</h3>
+                                    </div>
+                                    <div class="row g-3">
+                                        <div class="col-md-4"><div class="badge-custom">HTML</div></div>
+                                        <div class="col-md-4"><div class="badge-custom">CSS</div></div>
+                                        <div class="col-md-4"><div class="badge-custom">JavaScript</div></div>
+                                        <div class="col-md-4"><div class="badge-custom">Python</div></div>
+                                        <div class="col-md-4"><div class="badge-custom">Ruby</div></div>
+                                        <div class="col-md-4"><div class="badge-custom">Node.js</div></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- PAGE 3: PROJECTS -->
+        <div id="page-projects" class="page-section">
+            <section class="py-5">
+                <div class="container px-5 my-5">
+                    <div class="text-center mb-5">
+                        <h1 class="display-4 fw-bolder text-gradient-purple">Projects</h1>
+                    </div>
+
+                    <div class="row gx-5 justify-content-center">
+                        <div class="col-lg-11 col-xl-9 col-xxl-8">
+                            
+                            <!-- Project Card 1 -->
+                            <div class="card custom-card overflow-hidden mb-5">
+                                <div class="row g-0 align-items-center">
+                                    <div class="col-md-6 p-5">
+                                        <h3 class="fw-bold text-dark">Project Name 1</h3>
+                                        <p class="text-muted">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius at enim eum illum aperiam placeat esse? Mollitia omnis minima saepe recusandae libero, iste ad asperiores! Explicabo commodi quo itaque! Ipsam!</p>
+                                    </div>
+                                    <div class="col-md-6 bg-dark text-white d-flex align-items-center justify-content-center" style="min-height: 300px;">
+                                        <span class="fs-4 text-muted">300 × 400</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Call To Action Box -->
+                            <div class="cta-section text-white p-5 rounded-4 text-center my-5 shadow">
+                                <h2 class="display-5 fw-bold mb-4">Let's build something together</h2>
+                                <button onclick="showPage('contact')" class="btn btn-outline-light btn-lg px-5 py-3 rounded-3 fw-bold">Contact me</button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- PAGE 4: CONTACT -->
+        <div id="page-contact" class="page-section">
+            <section class="py-5">
+                <div class="container px-5 my-5">
+                    <div class="row gx-5 justify-content-center">
+                        <div class="col-lg-8 col-xl-6">
+                            <div class="text-center mb-5">
+                                <h1 class="display-4 fw-bolder text-gradient-purple">Get in touch</h1>
+                                <p class="lead fw-normal text-muted mb-0">Let's work together!</p>
+                            </div>
+                            <div class="card custom-card p-5">
+                                <form onsubmit="event.preventDefault(); alert('Message sent!');">
+                                    <div class="form-floating mb-3">
+                                        <input type="text" class="form-control" id="name" placeholder="Enter your name..." required>
+                                        <label for="name">Full name</label>
+                                    </div>
+                                    <div class="form-floating mb-3">
+                                        <input type="email" class="form-control" id="email" placeholder="name@example.com" required>
+                                        <label for="email">Email address</label>
+                                    </div>
+                                    <div class="form-floating mb-3">
+                                        <input type="tel" class="form-control" id="phone" placeholder="(123) 456-7890">
+                                        <label for="phone">Phone number</label>
+                                    </div>
+                                    <div class="form-floating mb-3">
+                                        <textarea class="form-control" id="message" placeholder="Enter your message here..." style="height: 150px" required></textarea>
+                                        <label for="message">Message</label>
+                                    </div>
+                                    <div class="d-grid">
+                                        <button class="btn btn-gradient-primary btn-lg" type="submit">Submit</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white py-4 mt-auto border-top">
+        <div class="container px-5">
+            <div class="row align-items-center justify-content-between flex-column flex-sm-row">
+                <div class="col-auto"><div class="small m-0 text-muted">Copyright &copy; Your Website 2023</div></div>
+                <div class="col-auto">
+                    <a class="small text-muted text-decoration-none" href="#">Privacy</a>
+                    <span class="text-muted mx-1">&middot;</span>
+                    <a class="small text-muted text-decoration-none" href="#">Terms</a>
+                    <span class="text-muted mx-1">&middot;</span>
+                    <a class="small text-muted text-decoration-none" href="#" onclick="showPage('contact')">Contact</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- JavaScript For Switching Pages -->
+    <script>
+        function showPage(pageId) {
+            // إخفاء جميع الصفحات
+            const pages = document.querySelectorAll('.page-section');
+            pages.forEach(page => {
+                page.classList.remove('active');
+            });
+
+            // إزالة التمييز من جميع روابط القائمة
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                link.classList.remove('active-link');
+                link.classList.add('text-muted');
+            });
+
+            // إظهار الصفحة المطلوبة
+            const selectedPage = document.getElementById('page-' + pageId);
+            if (selectedPage) {
+                selectedPage.classList.add('active');
+            }
+
+            // تمييز الرابط النشط في القائمة
+            const activeNav = document.getElementById('nav-' + pageId);
+            if (activeNav) {
+                activeNav.classList.add('active-link');
+                activeNav.classList.remove('text-muted');
+            }
+
+            // التمرير لأعلى الصفحة
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
